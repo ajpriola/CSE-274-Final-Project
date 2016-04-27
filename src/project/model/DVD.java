@@ -16,6 +16,7 @@ public class DVD implements Comparable<DVD> {
     
     private StringProperty title, producer, director, company;
     private ObservableList<String> stars;
+    private int availability;
 
     public DVD(String title, String producer, String director, String company, String stars[]) {
         this.title = new SimpleStringProperty(title);
@@ -23,6 +24,32 @@ public class DVD implements Comparable<DVD> {
         this.director = new SimpleStringProperty(director);
         this.company = new SimpleStringProperty(company);
         this.stars = FXCollections.observableArrayList(stars);
+        this.availability = 0;
+    }
+    
+    public DVD(String title) {
+    	this(title, "", "", "", new String[]{});
+    }
+    
+    public int getAvailability() {
+    	return availability;
+    }
+    
+    public void increment(int i) {
+    	availability += i;
+    }
+    
+    public void increment() {
+    	increment(1);
+    }
+    
+    public boolean decrement() {
+    	if (availability < 1) {
+    		return false;
+    	}
+    	
+    	availability -= 1;
+    	return true;
     }
     
     public StringProperty getTitle() {

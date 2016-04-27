@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="600.0" minWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.view.HomeViewController">
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+            <TextField fx:id="searchField" promptText="Search..." />
+          <Button fx:id="searchButton" mnemonicParsing="false" text="Search" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="DVDs">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="326.0" layoutY="98.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="availabilityLabel" prefWidth="100.0" text="Available: 0" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button fx:id="dvdCheckoutButton" disable="true" mnemonicParsing="false" onAction="#checkoutButtonClicked" prefWidth="90.0" text="Check Out" />
+                                    <Button fx:id="dvdInfoButton" disable="true" mnemonicParsing="false" prefWidth="90.0" text="Info" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <ListView fx:id="dvdListView" prefHeight="400.0" prefWidth="590.0" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Customers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="250.0" layoutY="125.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="100.0" text="--" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="idLabel" alignment="CENTER" prefWidth="100.0" text="--" textAlignment="CENTER">
+                                       <HBox.margin>
+                                          <Insets right="80.0" />
+                                       </HBox.margin></Label>
+                                    <Button fx:id="returnButton" disable="true" mnemonicParsing="false" onAction="#returnButtonClicked" prefWidth="90.0" text="Return" />
+                                    <Button mnemonicParsing="false" onAction="#newButtonClicked" prefWidth="90.0" text="New">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <ListView fx:id="customerListView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <ListView fx:id="checkedOutListView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

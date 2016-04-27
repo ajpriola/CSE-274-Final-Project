@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import project.BinaryTree;
 
 /**
  * Write a description of class Customer here.
@@ -18,17 +19,21 @@ public class Customer implements Comparable<Customer> {
     
     private StringProperty firstName, lastName;
     private IntegerProperty accountNumber;
-    private ObservableList<DVD> rented;
-
+    private BinaryTree<DVD> rented;
+    
+    public Customer(int id) {
+    	this("", "", id);
+    }
+    
     public Customer(String firstName, String lastName, int accountNumber) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.accountNumber = new SimpleIntegerProperty(accountNumber);
-        rented = FXCollections.observableArrayList();
+        rented = new BinaryTree<DVD>();
     }
     
     public ObservableList<DVD> getRented() {
-        return rented;
+        return FXCollections.observableArrayList(rented.inorder());
     }
     
     public void addRented(DVD dvd) {
@@ -43,7 +48,17 @@ public class Customer implements Comparable<Customer> {
         return accountNumber.getValue();
     }
     
-    public String getFirsName() {
+    public boolean setName(String name) {
+    	String[] arr = name.split("\\s+");
+    	if (arr.length != 2) {
+    		return false;
+    	}
+    	firstName = new SimpleStringProperty(arr[0]);
+    	lastName = new SimpleStringProperty(arr[1]);
+    	return true;
+    }
+    
+    public String getFirstName() {
         return firstName.getValue();
     }
     
@@ -52,7 +67,7 @@ public class Customer implements Comparable<Customer> {
     }
     
     public String fullName() {
-        return String.format("%s, %s", lastName, firstName);
+        return String.format("%s, %s", lastName.getValue(), firstName.getValue());
     }
     
     @Override

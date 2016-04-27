@@ -10,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import project.model.Store;
 import project.view.RootLayoutController;
 
 public class Main extends Application {
@@ -24,9 +25,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
     	sharedInstance = this;
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("FXLogin");
+        this.primaryStage.setTitle("Final Project");
 
         initRootLayout();
+        
+        Store.initialize();
 
         showHome();
     }
@@ -39,7 +42,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = (BorderPane)loader.load();
             
             RootLayoutController controller = loader.getController();
             rootController = controller;
@@ -69,7 +72,7 @@ public class Main extends Application {
     	try {
     		FXMLLoader loader = new FXMLLoader();
         	loader.setLocation(Main.class.getResource("view/HomeView.fxml"));
-			AnchorPane homeView = (AnchorPane)loader.load();
+        	BorderPane homeView = (BorderPane)loader.load();
 			
 			rootLayout.setCenter(homeView);
 		} catch (IOException e) {
