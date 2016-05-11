@@ -2,23 +2,17 @@ package project.view;
 
 import java.util.Optional;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
-import javafx.util.Pair;
 import project.Main;
 import project.model.Customer;
 import project.model.DVD;
@@ -26,8 +20,7 @@ import project.model.Store;
 
 public class HomeViewController {
 
-	@FXML TextField searchField;
-	@FXML Button searchButton, dvdCheckoutButton, dvdInfoButton, returnButton;
+	@FXML Button dvdCheckoutButton, dvdInfoButton, returnButton;
 	@FXML Label availabilityLabel, nameLabel, idLabel;
 	@FXML TabPane tabPane;
 	
@@ -126,6 +119,11 @@ public class HomeViewController {
 		});
 	}
 	
+	@FXML private void newDVDClicked() {
+		Main.sharedInstance().showAddWindow();
+		//Store.sharedInstance().addDVD(dvd);
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void updateCheckedOutList() {
 		Customer selected = (Customer)customerListView.getSelectionModel().getSelectedItem();
@@ -142,6 +140,7 @@ public class HomeViewController {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void showEditDialog(Customer customer) {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Customer");
@@ -174,6 +173,25 @@ public class HomeViewController {
 	
 	@FXML private void newButtonClicked() {
 		showEditDialog(null);
+	}
+	
+	@FXML private void infoButtonClicked() {
+		DVD selected = (DVD)dvdListView.getSelectionModel().getSelectedItem();
+		if (selected != null) {
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("DVD");
+	    	alert.setHeaderText(selected.getTitle().getValue());
+	    	alert.setContentText(String.format("Director: %s\n"
+	    									 + "Producer: %s\n"
+	    									 + "%s\n"
+	    									 + "Starring %s", 
+	    									 selected.getDirector().getValue(), 
+	    									 selected.getProducer().getValue(),
+	    									 selected.getCompany().getValue(),
+	    									 selected.getStarString()));
+	    	
+	    	alert.showAndWait();
+		}
 	}
 	
 	@FXML private void returnButtonClicked() {

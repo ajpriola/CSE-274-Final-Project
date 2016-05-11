@@ -9,12 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.view.HomeViewController">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-            <TextField fx:id="searchField" promptText="Search..." />
-          <Button fx:id="searchButton" mnemonicParsing="false" text="Search" />
-        </items>
-      </ToolBar>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -39,7 +34,8 @@
                                        </HBox.margin>
                                     </Label>
                                     <Button fx:id="dvdCheckoutButton" disable="true" mnemonicParsing="false" onAction="#checkoutButtonClicked" prefWidth="90.0" text="Check Out" />
-                                    <Button fx:id="dvdInfoButton" disable="true" mnemonicParsing="false" prefWidth="90.0" text="Info" />
+                                    <Button fx:id="dvdInfoButton" disable="true" mnemonicParsing="false" onAction="#infoButtonClicked" prefWidth="90.0" text="Info" />
+                                    <Button mnemonicParsing="false" onAction="#newDVDClicked" prefWidth="90.0" text="New DVD" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

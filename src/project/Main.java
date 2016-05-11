@@ -11,13 +11,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import project.model.Store;
-import project.view.RootLayoutController;
 
 public class Main extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private RootLayoutController rootController;
     
     private static Main sharedInstance;
     
@@ -43,9 +41,6 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane)loader.load();
-            
-            RootLayoutController controller = loader.getController();
-            rootController = controller;
             
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
@@ -76,9 +71,23 @@ public class Main extends Application {
 			
 			rootLayout.setCenter(homeView);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+    }
+    
+    /**
+     * Shows the window for adding a new DVD.
+     */
+    public void showAddWindow() {
+    	try {
+    		FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(Main.class.getResource("view/NewDVDView.fxml"));
+    		AnchorPane addView = (AnchorPane)loader.load();
+    		
+    		rootLayout.setCenter(addView);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
     /**
